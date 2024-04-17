@@ -6,6 +6,6 @@
 typedef unsigned size_t;
 
 void sysExit(int errcode);
-
+void processorError(int code);
 
 #endif // __MLIB__

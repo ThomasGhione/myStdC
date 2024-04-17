@@ -10,8 +10,15 @@
 int main() {
 
     char in[10];
-    scan(in, 10);
+    gets(&in);
+    puts(in);
+    puts("\n");
+
+/*
+    char in[10];
+    scanf("%s", &in);
     print(in);
+*/
 
     return 0;
 }

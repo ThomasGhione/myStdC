@@ -5,14 +5,20 @@
 
 #include "mlib.h"
 
+#define stdin 0
+#define stdout 1
+#define stderr 2
+
 void write(unsigned fd, const char *buf, size_t count);
+void read(unsigned fd, const char *buf, size_t count);
+
 void print(const char *buf);
 void printf(const char *buf, ...);
+void scan(char *buf, size_t max);
+void scanf(const char *format, ...);
 
-void read(unsigned fd, const char *buf, size_t count);
-void scan(char *buf, size_t maxLen);
-
-
+void puts(const char *buf);
+void gets(char *buf);
 
 char* itoa(int value, char* result, int base);
 void printNum(int num);

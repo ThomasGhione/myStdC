@@ -6,7 +6,7 @@
 #include "include/mio.h"
 #include "include/mlib.h"
 #include "include/mstring.h"
-
+#include "include/mlimits.h"
 
 
 void write(unsigned fd, const char* buf, size_t count) {
@@ -28,21 +28,59 @@ void read(unsigned fd, const char* buf, size_t count) {
 }
 
 void print(const char* buf) {
-    write(1, buf, strlen(buf));
+    write(stdout, buf, strlen(buf));
 }
 
-void scan(char* buf, size_t maxLen) {
-    // int c = strlen(buf);
-    int a = 0;
-
+void scan(char *buf, size_t max) {
     read(0, buf, 1);
-    // ++a;
-    while (*buf != '\n' && a < maxLen)
-        read(0, ++buf, 1);
-    *buf = '\0'; // set the buffer to null terminator so we don't leak memory
+    int a = 0;
+    while (*buf != '\n' && a < max) {
+        ++a;
+        read(stdin, ++buf, 1);
+    }
+    *buf = '\0';
 }
 
-void printf(const char *buf, ...) {
+void puts(const char* buf) {
+    print(buf);
+}
+
+void gets(char* buf) {
+    scan(buf, UINT_MAX);
+}
+
+void scanf(const char* format, ...) {
+    
+    char *ptr = format;
+    ptr += sizeof(*format) / sizeof(char);
+
+    if (*format != '%') {
+        print("scanf: invalid format\n");
+        //processError(1);
+        return; // TODO remove this
+    }
+
+    ++format;
+
+    switch (*format) {
+        case 's':
+            read(stdin, *ptr, 1);
+            while (*ptr != '\n') {
+                ++ptr;
+                read(stdin, *ptr, 1);
+            }
+            *ptr = '\0';
+            break;
+        case 'd':
+            int i = *ptr;
+            char *res = itoa(i, res, 10);
+            print(res);
+            break;
+        default:
+            print("scanf: not supported or wrong type :(\n");
+            //processError(1);
+            return; // TODO remove this
+    }
 
 }
 
