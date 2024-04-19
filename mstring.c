@@ -9,3 +9,20 @@ size_t strlen(const char *buf) {
         ++len;
     return len;
 }
+
+int strcmp(const char *str1, const char *str2) {
+    return strlen(str1) - strlen(str2);
+}
+
+int* strcat(char *dest, const char *src) {
+    char *ptr = dest;
+    while (*ptr != '\0')
+        ++ptr;
+    while (*src != '\0') {
+        *ptr = *src;
+        ++ptr;
+        ++src;
+    }
+    *ptr = '\0';
+    return dest;
+}

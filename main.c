@@ -9,11 +9,10 @@
 
 int main() {
 
-    char in[10];
-    gets(&in);
-    puts(in);
-    puts("\n");
-
+    char *in = "Hello, World!";
+    char *append = " This is a test!";
+    strcat(in, append);
+    print(in);
 /*
     char in[10];
     scanf("%s", &in);

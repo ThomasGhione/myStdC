@@ -1,10 +1,17 @@
 // Ubuntu linux 64 bit
 
-#ifndef __MSTRING__
-#define __MSTRING__
+#ifndef _MSTRING_H
+#define _MSTRING_H
+
+#define NULL 0
 
 #include "mlib.h"
 
-size_t strlen(const char *buf);
+typedef unsigned size_t;
 
-#endif // __MSTRING__
+size_t strlen(const char *buf);
+int strcmp(const char *str1, const char *str2);
+int *strcat(char *dest, const char *src);
+
+
+#endif // _MSTRING_H

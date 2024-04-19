@@ -85,10 +85,24 @@ void scanf(const char* format, ...) {
 }
 
 
+void *malloc(size_t size) {
+    void *ptr;
+    asm volatile
+        (
+            "syscall"
+            :"=a"(ptr)
+            :"a"(9), "D"(size)
+        );
+    return ptr;
+}
+
+
 
 char* itoa(int value, char* result, int base) {
     // check that base case is valid
-    if (base < 2 || base > 36) { *result = '\0'; return result; }
+    if (base < 2 || base > 36) { 
+        *result = '\0';
+        return result; }
 
     char* ptr = result, *ptr1 = result, tmp_char;
     int tmp_value;
@@ -111,7 +125,12 @@ char* itoa(int value, char* result, int base) {
 }
 
 void printNum(int num) {
-    char *res;
-    *res = itoa(num, res, 10);
-    print(res);
+    char buf[16];
+    itoa(num, buf, 16);
+    print(buf);
+}
+
+void perror(const char* str) {
+    print(str);
+    print(". ");
 }
