@@ -9,9 +9,10 @@
 
 int main() {
 
-    char *in = "Hello, World!";
-    char *append = " This is a test!";
-    strcat(in, append);
+    char in[1000] = "Hello world!";
+    char append[16] = "This is a test!";
+    
+    strncat(in, append, 1000);
     print(in);
 /*
     char in[10];

@@ -102,7 +102,8 @@ char* itoa(int value, char* result, int base) {
     // check that base case is valid
     if (base < 2 || base > 36) { 
         *result = '\0';
-        return result; }
+        return result;
+    }
 
     char* ptr = result, *ptr1 = result, tmp_char;
     int tmp_value;
